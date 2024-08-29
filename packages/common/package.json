@@ -1,0 +1,52 @@
+{
+  "name": "@tongari07/my-sample-library",
+  "version": "0.1.0",
+  "description": "React UI Component Library Sample",
+  "author": "tongari07",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tongary07/library-playground.git"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://npm.pkg.github.com"
+  },
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/lib/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/lib/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/lib/index.d.ts",
+        "default": "./dist/cjs/index.js"
+      }
+    }
+  },
+  "scripts": {
+    "build": "pnpm build:clean && pnpm build:types && pnpm build:esbuild",
+    "build:clean": "rm -rf ./dist",
+    "build:types": "tsc --build ./tsconfig.build.json",
+    "build:esbuild": "node ./scripts/build-with-esbuild.mjs",
+    "lint": "eslint ./src",
+    "lint:fix": "eslint --fix './src/**/*.{ts,tsx}' && pnpm prettier:fix",
+    "format": "prettier ./src --check",
+    "format:fix": "prettier ./src --write",
+    "publish": "pnpm publish"
+  },
+  "packageManager": "pnpm@9.0.6+sha256.0624e30eff866cdeb363b15061bdb7fd9425b17bc1bb42c22f5f4efdea21f6b3",
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.1.0",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "esbuild": "^0.23.1",
+    "typescript": "^5.5.4"
+  }
+}
